@@ -1,4 +1,4 @@
-package ru.brow.PP_3_1_2.model;
+package ru.brow.ModuleThreeApplication.model;
 
 
 import jakarta.persistence.*;

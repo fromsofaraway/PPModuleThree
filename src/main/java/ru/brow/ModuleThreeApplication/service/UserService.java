@@ -1,7 +1,7 @@
-package ru.brow.PP_3_1_2.service;
+package ru.brow.ModuleThreeApplication.service;
 
 
-import ru.brow.PP_3_1_2.model.User;
+import ru.brow.ModuleThreeApplication.model.User;
 
 import java.util.List;
 

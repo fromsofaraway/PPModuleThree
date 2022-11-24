@@ -1,10 +1,10 @@
-package ru.brow.PP_3_1_2.service;
+package ru.brow.ModuleThreeApplication.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.brow.PP_3_1_2.dao.UserDao;
-import ru.brow.PP_3_1_2.model.User;
+import ru.brow.ModuleThreeApplication.dao.UserDao;
+import ru.brow.ModuleThreeApplication.model.User;
 
 import java.util.List;
 

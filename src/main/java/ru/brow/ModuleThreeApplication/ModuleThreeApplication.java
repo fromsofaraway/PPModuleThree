@@ -1,13 +1,13 @@
-package ru.brow.PP_3_1_2;
+package ru.brow.ModuleThreeApplication;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Pp312Application {
+public class ModuleThreeApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Pp312Application.class, args);
+		SpringApplication.run(ModuleThreeApplication.class, args);
 	}
 
 }

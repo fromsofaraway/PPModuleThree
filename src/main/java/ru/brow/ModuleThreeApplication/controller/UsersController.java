@@ -1,11 +1,11 @@
-package ru.brow.PP_3_1_2.controller;
+package ru.brow.ModuleThreeApplication.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.brow.PP_3_1_2.model.User;
-import ru.brow.PP_3_1_2.service.UserService;
+import ru.brow.ModuleThreeApplication.model.User;
+import ru.brow.ModuleThreeApplication.service.UserService;
 
 
 @Controller

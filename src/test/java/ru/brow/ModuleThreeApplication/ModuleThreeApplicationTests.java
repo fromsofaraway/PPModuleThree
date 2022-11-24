@@ -1,10 +1,10 @@
-package ru.brow.PP_3_1_2;
+package ru.brow.ModuleThreeApplication;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Pp312ApplicationTests {
+class ModuleThreeApplicationTests {
 
 	@Test
 	void contextLoads() {
