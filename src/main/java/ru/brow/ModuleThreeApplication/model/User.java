@@ -1,38 +1,50 @@
 package ru.brow.ModuleThreeApplication.model;
 
-
-import jakarta.persistence.*;
-
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private long id;
+
     @Column
     private String name;
     @Column
-    private String surname;
-    @Column
     private byte age;
     @Column
-    private String department;
+    private String username;
     @Column
-    private int salary;
+    private String password;
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(
+            name = "role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private List<Role> roles = new ArrayList<>();
 
-    public User(String name, String surname, byte age, String department, int salary) {
+    public User(String name, byte age, String username, String password, List<Role> roles) {
         this.name = name;
-        this.surname = surname;
         this.age = age;
-        this.department = department;
-        this.salary = salary;
+        this.username = username;
+        this.password = password;
+        this.roles = roles;
     }
 
     public User() {
+    }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public long getId() {
@@ -51,14 +63,6 @@ public class User {
         this.name = name;
     }
 
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
     public byte getAge() {
         return age;
     }
@@ -67,19 +71,31 @@ public class User {
         this.age = age;
     }
 
-    public String getDepartment() {
-        return department;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public void setDepartment(String department) {
-        this.department = department;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public int getSalary() {
-        return salary;
+    public List<Role> getRoles() {
+        return roles;
     }
 
-    public void setSalary(int salary) {
-        this.salary = salary;
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", roles=" + roles +
+                '}';
     }
 }
