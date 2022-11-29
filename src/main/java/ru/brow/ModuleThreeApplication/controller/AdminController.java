@@ -28,34 +28,37 @@ public class AdminController {
 
 
     @GetMapping("")
-    public String showAll(Model model) {
-        model.addAttribute("users", userService.findAll());
+    public String show(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        System.out.println(userDetails.getUser());
-        return "users";
-    }
-
-
-    @GetMapping("/addNewUser")
-    public String addNewUser(@ModelAttribute("user") User user, Model model) {
+        model.addAttribute("users", userService.findAll());
+        model.addAttribute("currentUser", userService.findOne(userDetails.getUser().getId()));
         model.addAttribute("allRoles", roleService.findAll());
-        return "user-info";
+        model.addAttribute("newUser", new User());
+        return "/admin/admin";
     }
+
+
+//    @GetMapping("/addNewUser")
+//    public String addNewUser(@ModelAttribute("newUser") User user, Model model) {
+//        model.addAttribute("allRoles", roleService.findAll());
+//        return "/admin/admin";
+//    }
 
 
     @PostMapping("/saveUser")
     public String saveUser(@ModelAttribute("user") User user,
-                           @ModelAttribute("role") Role role) {
+                           @ModelAttribute("role") Role role,
+                           Model model) {
+        model.addAttribute("user", new User());
         userService.save(user);
-        return "redirect:/admin";
+        return "redirect:/admin/";
     }
 
-    @GetMapping("/{id}/edit")
+    @GetMapping("/{id}")
     public String editUser(Model model, @PathVariable("id") long id) {
         model.addAttribute("user", userService.findOne(id));
-        model.addAttribute("allRoles", roleService.findAll());
-        return "edit";
+        return "redirect:/admin/";
     }
 
     @PatchMapping("/{id}")
@@ -63,12 +66,12 @@ public class AdminController {
                              @ModelAttribute("role") Role role,
                              @PathVariable("id") long id) {
         userService.update(id, user);
-        return "redirect:/admin";
+        return "redirect:/admin/";
     }
 
     @DeleteMapping("/{id}")
     public String deleteUser(@PathVariable("id") long id) {
         userService.delete(id);
-        return "redirect:/admin";
+        return "redirect:/admin/";
     }
 }
