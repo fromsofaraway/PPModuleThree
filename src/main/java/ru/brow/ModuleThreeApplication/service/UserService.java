@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.brow.ModuleThreeApplication.model.User;
 import ru.brow.ModuleThreeApplication.repository.UserRepository;
+import ru.brow.ModuleThreeApplication.util.PersonNotFoundException;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,7 +26,7 @@ public class UserService {
 
     public User findOne(long id) {
         Optional<User> foundUser = userRepository.findById(id);
-        return foundUser.orElse(null);
+        return foundUser.orElseThrow(PersonNotFoundException::new);
     }
 
     @Transactional

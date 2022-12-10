@@ -1,7 +1,9 @@
 package ru.brow.ModuleThreeApplication.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,12 +16,17 @@ public class User {
     private long id;
 
     @Column
+    @NotEmpty(message = "name shouldn't be empty")
+    @Size(min = 2, max = 100, message = "should be between 2 and 100 characters")
     private String name;
     @Column
+    @Min(value = 0, message = "should be greater than 0")
     private byte age;
     @Column
+    @NotEmpty(message = "username shouldn't be empty")
     private String username;
     @Column
+    @NotEmpty(message = "password shouldn't be empty")
     private String password;
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(

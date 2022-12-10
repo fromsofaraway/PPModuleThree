@@ -2,13 +2,14 @@ package ru.brow.ModuleThreeApplication.security;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
+import ru.brow.ModuleThreeApplication.model.Role;
 import ru.brow.ModuleThreeApplication.model.User;
 import java.util.Collection;
 
 
 public class UserDetails implements org.springframework.security.core.userdetails.UserDetails {
 
-    private User user;
+    private final User user;
 
     public UserDetails(User user) {
         this.user = user;
@@ -16,9 +17,8 @@ public class UserDetails implements org.springframework.security.core.userdetail
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        String[] userRoles = user.getRoles().stream().map((role) -> role.getName()).toArray(String[]::new);
-        Collection<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(userRoles);
-        return authorities;
+        String[] userRoles = user.getRoles().stream().map(Role::getName).toArray(String[]::new);
+        return AuthorityUtils.createAuthorityList(userRoles);
     }
 
     @Override

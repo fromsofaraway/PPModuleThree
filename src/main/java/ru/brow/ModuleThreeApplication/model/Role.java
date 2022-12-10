@@ -1,5 +1,6 @@
 package ru.brow.ModuleThreeApplication.model;
 
+import org.hibernate.annotations.Cascade;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
@@ -16,6 +17,7 @@ public class Role implements GrantedAuthority {
     private String name;
 
     @ManyToMany(mappedBy = "roles")
+    @Cascade(org.hibernate.annotations.CascadeType.MERGE)
     private List<User> users;
 
     public Role(long id, String name) {
